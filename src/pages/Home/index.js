@@ -5,7 +5,7 @@ import StepForm from "../../components/StepForm"
 
 const Home = () => (
   <Container>
-    Home! <StepForm />
+    <StepForm />
   </Container>
 )
 
