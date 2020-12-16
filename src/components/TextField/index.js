@@ -6,10 +6,10 @@ import * as S from "./styled"
 const TextField = ({ label, name }) => {
   const id = `${name}Id`
   return (
-    <>
-      {label && <label for={id}>{label}</label>}
-      <input type="text" id={id} name={name} />
-    </>
+    <S.FormControlGroup>
+      {label && <S.Label htmlFor={id}>{label}</S.Label>}
+      <S.Input type="text" id={id} name={name} />
+    </S.FormControlGroup>
   )
 }
 

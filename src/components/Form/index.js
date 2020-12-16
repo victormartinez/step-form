@@ -1,7 +1,9 @@
 import React from "react"
 
+import * as S from "./styled"
+
 const Form = ({ children }) => {
-  return <form>{children}</form>
+  return <S.Form>{children}</S.Form>
 }
 
 export default Form
