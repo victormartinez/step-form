@@ -2,13 +2,15 @@ import React, { useState } from "react"
 
 import Form from "../Form"
 import TextField from "../TextField"
+import Button from "../Button"
+import List from "../List"
 
 const StepForm = () => {
   const maxSteps = 3
   const [currentStep, setCurrentStep] = useState(0)
   const [name, setName] = useState("")
   const [place, setPlace] = useState("")
-  const [color, setFavoriteColor] = useState("")
+  const [favoriteColor, setFavoriteColor] = useState("")
 
   const setFieldHandler = (event, fieldName) => {
     const fieldStates = {
@@ -32,6 +34,10 @@ const StepForm = () => {
     setCurrentStep(currentStep - 1)
   }
 
+  const goSubmit = () => {
+    setCurrentStep(-1)
+  }
+
   const fields = [
     {
       label: "What's your name?",
@@ -48,11 +54,11 @@ const StepForm = () => {
     {
       label: "What's your favorite color?",
       name: "favoriteColor",
-      value: color,
+      value: favoriteColor,
       step: 2,
     },
   ]
-  return (
+  return currentStep >= 0 ? (
     <Form onSubmit={submitHandler}>
       {fields.map(({ label, name, value, step }) => {
         return currentStep !== step ? null : (
@@ -66,11 +72,16 @@ const StepForm = () => {
         )
       })}
 
-      {currentStep > 0 && <button onClick={() => goPrev()}>Previous</button>}
+      {currentStep > 0 && <Button onClick={() => goPrev()}>Previous</Button>}
       {currentStep !== maxSteps - 1 && (
-        <button onClick={() => goNext()}>Next</button>
+        <Button onClick={() => goNext()}>Next</Button>
+      )}
+      {currentStep === maxSteps - 1 && (
+        <Button onClick={() => goSubmit()}>Done!</Button>
       )}
     </Form>
+  ) : (
+    <List elements={fields} />
   )
 }
 
